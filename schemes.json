@@ -1,0 +1,12 @@
+[
+  {
+    "name": "PM Awas Yojana",
+    "income_limit": 300000,
+    "benefit": "Housing Subsidy"
+  },
+  {
+    "name": "Ayushman Bharat",
+    "income_limit": 250000,
+    "benefit": "Health Insurance ₹5,00,000"
+  }
+]

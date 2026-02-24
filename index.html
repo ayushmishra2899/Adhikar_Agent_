@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Adhikar Agent</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <h2>Adhikar-Agent</h2>
+
+    <input type="file" id="fileInput">
+
+    <button onclick="upload()">Check Eligibility</button>
+
+    <div id="output">Result will appear here...</div>
+
+    <div class="footer">
+      AI-Powered Government Scheme Assistant
+    </div>
+  </div>
+
+  <script>
+    async function upload() {
+      const fileInput = document.getElementById("fileInput");
+      const output = document.getElementById("output");
+
+      if (fileInput.files.length === 0) {
+        alert("Please select a file first");
+        return;
+      }
+
+      output.innerText = "Checking eligibility... ⏳";
+
+      const formData = new FormData();
+      formData.append("file", fileInput.files[0]);
+
+      try {
+        const response = await fetch("http://127.0.0.1:8000/upload", {
+          method: "POST",
+          body: formData
+        });
+
+        const data = await response.json();
+        output.innerText = JSON.stringify(data, null, 2);
+
+      } catch (error) {
+        output.innerText = "❌ Backend not reachable. Is the server running?";
+        console.error(error);
+      }
+    }
+  </script>
+
+</body>
+</html>
